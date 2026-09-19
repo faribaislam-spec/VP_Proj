@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Background gradient -->
+    <color name="lavender_bg_top">#F3ECFF</color>
+    <color name="lavender_bg_mid">#FBF3FF</color>
+    <color name="lavender_bg_bottom">#FFF7FC</color>
+
+    <!-- Core lavender palette -->
+    <color name="lavender_primary">#8D7CB8</color>
+    <color name="lavender_deep">#6C4FA0</color>
+    <color name="lavender_light">#D8C9F2</color>
+    <color name="lavender_pale">#F1E8FF</color>
+
+    <!-- Text -->
+    <color name="plum_text">#4A174B</color>
+    <color name="muted_grey">#8A7F99</color>
+
+    <!-- SOS red -->
+    <color name="sos_red_light">#FF6B7A</color>
+    <color name="sos_red">#E63950</color>
+    <color name="sos_red_dark">#B71C3C</color>
+    <color name="sos_ring_faint">#33FF8FA0</color>
+
+    <!-- Sparkle accents -->
+    <color name="sparkle_pink">#FFD6ED</color>
+    <color name="sparkle_white">#FFFFFF</color>
+    <color name="card_shadow">#E4D6F7</color>
+
+    <!-- Feature card tint: soft pink, semi-transparent -->
+    <color name="card_pink_tint">#D9FCEAF4</color>
+    <color name="card_pink_border">#F0C9E4</color>
+</resources>

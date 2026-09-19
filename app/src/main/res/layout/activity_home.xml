@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_dashboard_gradient"
+    android:fillViewport="true">
+
+    <!--
+        TIP: If you add a Canva background image instead, just swap the line above to:
+        android:background="@drawable/your_canva_bg_png"
+        (drop the PNG into res/drawable first)
+    -->
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- ✨ decorative sparkles scattered around the screen ✨ -->
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_gravity="top|start"
+            android:layout_marginTop="14dp"
+            android:layout_marginStart="18dp"
+            android:src="@drawable/ic_sparkle_star"
+            app:tint="@color/lavender_primary"
+            android:alpha="0.85"
+            android:contentDescription="@null" />
+
+        <ImageView
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:layout_gravity="top|end"
+            android:layout_marginTop="72dp"
+            android:layout_marginEnd="92dp"
+            android:src="@drawable/ic_sparkle_star"
+            app:tint="@color/sparkle_pink"
+            android:contentDescription="@null" />
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_gravity="top|end"
+            android:layout_marginTop="340dp"
+            android:layout_marginEnd="26dp"
+            android:src="@drawable/ic_sparkle_star"
+            app:tint="@color/lavender_light"
+            android:contentDescription="@null" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="top|start"
+            android:layout_marginTop="368dp"
+            android:layout_marginStart="28dp"
+            android:src="@drawable/ic_sparkle_star"
+            app:tint="@color/sos_red_light"
+            android:alpha="0.7"
+            android:contentDescription="@null" />
+
+        <!-- main content -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="22dp"
+            android:paddingTop="26dp"
+            android:paddingBottom="24dp">
+
+            <!-- Header: avatar + greeting + pretty menu button -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <FrameLayout
+                    android:layout_width="56dp"
+                    android:layout_height="56dp">
+
+                    <View
+                        android:layout_width="56dp"
+                        android:layout_height="56dp"
+                        android:background="@drawable/bg_avatar_circle" />
+
+                    <ImageView
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_rgr_person"
+                        android:contentDescription="@null" />
+
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="14dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/welcomeText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/welcome_back"
+                        android:textColor="@color/plum_text"
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/emailText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="@string/placeholder_email"
+                        android:textColor="@color/muted_grey"
+                        android:textSize="13sp" />
+
+                </LinearLayout>
+
+                <!-- three-dot dropdown trigger, restyled as a pretty lavender circle -->
+                <FrameLayout
+                    android:layout_width="46dp"
+                    android:layout_height="46dp">
+
+                    <Button
+                        android:id="@+id/menuButton"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="46dp"
+                        android:layout_height="46dp"
+                        android:background="@drawable/bg_menu_circle"
+                        android:backgroundTint="@null"
+                        app:backgroundTint="@null"
+                        android:stateListAnimator="@null"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:minWidth="0dp"
+                        android:minHeight="0dp"
+                        android:padding="0dp"
+                        android:text="" />
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginStart="13dp"
+                        android:layout_marginTop="13dp"
+                        android:src="@drawable/ic_dots_vertical"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:importantForAccessibility="no" />
+
+                </FrameLayout>
+
+            </LinearLayout>
+
+            <!-- tagline chip -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="22dp"
+                android:background="@drawable/bg_tagline_chip"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="8dp">
+
+                <ImageView
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/ic_sparkle_star"
+                    app:tint="@color/lavender_deep"
+                    android:contentDescription="@null" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tagline"
+                    android:textColor="@color/lavender_deep"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:layout_marginStart="8dp"
+                    android:src="@drawable/ic_sparkle_star"
+                    app:tint="@color/lavender_deep"
+                    android:contentDescription="@null" />
+
+            </LinearLayout>
+
+            <!-- SOS: red glossy circle with a soft halo behind it -->
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="36dp">
+
+                <View
+                    android:layout_width="220dp"
+                    android:layout_height="220dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/bg_sos_ring_outer" />
+
+                <Button
+                    android:id="@+id/sosButton"
+                    android:layout_width="180dp"
+                    android:layout_height="180dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/bg_sos_circle"
+                    android:backgroundTint="@null"
+                    app:backgroundTint="@null"
+                    android:stateListAnimator="@null"
+                    android:text="@string/sos_label"
+                    android:textAllCaps="false"
+                    android:textColor="#FFFFFF"
+                    android:textSize="36sp"
+                    android:textStyle="bold" />
+
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="14dp"
+                android:text="@string/sos_subtitle"
+                android:textColor="@color/muted_grey"
+                android:textSize="14sp" />
+
+            <!-- Feature grid, cute card style -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="34dp">
+
+                <Button
+                    android:id="@+id/contactsButton"
+                    android:layout_width="0dp"
+                    android:layout_height="150dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/bg_feature_card"
+                    android:backgroundTint="@null"
+                    app:backgroundTint="@null"
+                    android:stateListAnimator="@null"
+                    android:gravity="center"
+                    android:lineSpacingExtra="2dp"
+                    android:drawableTop="@drawable/ic_rgr_phone"
+                    android:drawablePadding="12dp"
+                    android:text="@string/contacts_card_text"
+                    android:textAllCaps="false"
+                    android:textColor="@color/plum_text"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/mapButton"
+                    android:layout_width="0dp"
+                    android:layout_height="150dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/bg_feature_card"
+                    android:backgroundTint="@null"
+                    app:backgroundTint="@null"
+                    android:stateListAnimator="@null"
+                    android:gravity="center"
+                    android:lineSpacingExtra="2dp"
+                    android:drawableTop="@drawable/ic_map_pin"
+                    android:drawablePadding="12dp"
+                    android:text="@string/map_card_text"
+                    android:textAllCaps="false"
+                    android:textColor="@color/plum_text"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <!-- Second feature row: Report an unsafe area + Camera Detection -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="16dp">
+
+                <Button
+                    android:id="@+id/reportButton"
+                    android:layout_width="0dp"
+                    android:layout_height="150dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/bg_feature_card"
+                    android:backgroundTint="@null"
+                    app:backgroundTint="@null"
+                    android:stateListAnimator="@null"
+                    android:gravity="center"
+                    android:lineSpacingExtra="2dp"
+                    android:drawableTop="@drawable/ic_report_flag"
+                    android:drawablePadding="12dp"
+                    android:text="@string/report_card_text"
+                    android:textAllCaps="false"
+                    android:textColor="@color/plum_text"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/cameraButton"
+                    android:layout_width="0dp"
+                    android:layout_height="150dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/bg_feature_card"
+                    android:backgroundTint="@null"
+                    app:backgroundTint="@null"
+                    android:stateListAnimator="@null"
+                    android:gravity="center"
+                    android:lineSpacingExtra="2dp"
+                    android:drawableTop="@drawable/ic_camera_scan"
+                    android:drawablePadding="12dp"
+                    android:text="@string/camera_card_text"
+                    android:textAllCaps="false"
+                    android:textColor="@color/plum_text"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/safetyTipsButton"
+                android:layout_width="match_parent"
+                android:layout_height="86dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_feature_card"
+                android:backgroundTint="@null"
+                app:backgroundTint="@null"
+                android:stateListAnimator="@null"
+                android:gravity="center"
+                android:paddingStart="24dp"
+                android:paddingEnd="24dp"
+                android:drawableStart="@drawable/ic_lightbulb"
+                android:drawablePadding="16dp"
+                android:text="@string/safety_tips_card_text"
+                android:textAllCaps="false"
+                android:textColor="@color/plum_text"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <!-- Footer -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="34dp"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_marginEnd="6dp"
+                        android:src="@drawable/ic_rgr_heart"
+                        android:contentDescription="@null" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/footer_brand"
+                        android:textColor="@color/lavender_primary"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/footer_subtitle"
+                    android:textColor="@color/lavender_primary"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</ScrollView>

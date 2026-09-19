@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FBF7FF">
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/bg_wave_lavender"
+        android:scaleType="fitXY"/>
+
+
+    <ScrollView
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:gravity="center_horizontal">
+
+
+            <!-- Back Button -->
+            <com.google.android.material.button.MaterialButton
+
+                android:id="@+id/btnBack"
+
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+
+                android:layout_gravity="start"
+                android:layout_marginTop="10dp"
+
+                android:backgroundTint="#EFE3FF"
+
+                android:gravity="center"
+
+                android:padding="0dp"
+
+                app:cornerRadius="26dp"
+
+                app:icon="@drawable/ic_arrow_back"
+                app:iconGravity="textStart"
+                app:iconPadding="0dp"
+                app:iconTint="#7439AF"
+
+                app:strokeColor="#C8A2FF"
+                app:strokeWidth="1dp" />
+
+
+            <!-- Contact Icon -->
+
+            <ImageView
+
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="10dp"
+
+                android:src="@drawable/outline_account_circle_24"
+
+                app:tint="#7439AF"/>
+
+
+            <!-- Title -->
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginBottom="20dp"
+
+                android:text="Add Emergency Contact"
+
+                android:textColor="#7439AF"
+
+                android:textSize="26sp"
+
+                android:textStyle="bold" />
+
+
+
+            <!-- Contact Card -->
+
+            <com.google.android.material.card.MaterialCardView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                app:cardCornerRadius="20dp"
+
+                app:cardElevation="8dp"
+
+                app:cardBackgroundColor="#FFFFFF">
+
+
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:orientation="vertical"
+
+                    android:padding="20dp">
+
+
+
+
+                    <!-- Name -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Name"
+
+                        app:boxBackgroundMode="filled"
+                        app:boxBackgroundColor="#F8F0FF"
+                        app:boxStrokeColor="#B56CFF"
+                        app:boxStrokeWidth="2dp"
+                        app:boxStrokeWidthFocused="2dp"
+                        app:hintTextColor="#9C6ADE"
+
+                        app:boxCornerRadiusTopStart="16dp"
+                        app:boxCornerRadiusTopEnd="16dp"
+                        app:boxCornerRadiusBottomStart="16dp"
+                        app:boxCornerRadiusBottomEnd="16dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textPersonName"
+                            android:textColor="#4A2A6A"
+                            android:textColorHint="#B08BCF"
+                            android:paddingStart="8dp"
+                            android:paddingEnd="8dp"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <!-- Phone -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:hint="Phone Number"
+
+                        app:boxBackgroundMode="filled"
+                        app:boxBackgroundColor="#F8F0FF"
+                        app:boxStrokeColor="#B56CFF"
+                        app:boxStrokeWidth="2dp"
+                        app:boxStrokeWidthFocused="2dp"
+                        app:hintTextColor="#9C6ADE"
+
+                        app:boxCornerRadiusTopStart="16dp"
+                        app:boxCornerRadiusTopEnd="16dp"
+                        app:boxCornerRadiusBottomStart="16dp"
+                        app:boxCornerRadiusBottomEnd="16dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etPhone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="phone"
+                            android:textColor="#4A2A6A"
+                            android:textColorHint="#B08BCF"
+                            android:paddingStart="8dp"
+                            android:paddingEnd="8dp"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <!-- Relationship -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:hint="Relationship"
+
+                        app:boxBackgroundMode="filled"
+                        app:boxBackgroundColor="#F8F0FF"
+                        app:boxStrokeColor="#B56CFF"
+                        app:boxStrokeWidth="2dp"
+                        app:boxStrokeWidthFocused="2dp"
+                        app:hintTextColor="#9C6ADE"
+
+                        app:boxCornerRadiusTopStart="16dp"
+                        app:boxCornerRadiusTopEnd="16dp"
+                        app:boxCornerRadiusBottomStart="16dp"
+                        app:boxCornerRadiusBottomEnd="16dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etRelationship"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text"
+                            android:textColor="#4A2A6A"
+                            android:textColorHint="#B08BCF"
+                            android:paddingStart="8dp"
+                            android:paddingEnd="8dp"/>
+
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+
+                    <!-- Save Button -->
+
+                    <com.google.android.material.button.MaterialButton
+
+                        android:id="@+id/btnSave"
+
+                        android:layout_width="match_parent"
+
+                        android:layout_height="55dp"
+
+                        android:layout_marginTop="24dp"
+
+                        android:text="Save Contact"
+
+                        android:textAllCaps="false"
+
+                        android:textColor="@android:color/white"
+
+                        android:textSize="16sp"
+
+                        android:backgroundTint="#B56CFF"
+
+                        app:cornerRadius="28dp"/>
+
+
+                </LinearLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+</FrameLayout>

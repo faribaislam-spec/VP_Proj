@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_dashboard_gradient"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="22dp"
+        android:paddingTop="26dp"
+        android:paddingBottom="32dp">
+
+
+        <!-- ========================= -->
+        <!-- BACK BUTTON -->
+        <!-- ========================= -->
+
+        <FrameLayout
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_marginBottom="12dp">
+
+            <Button
+                android:id="@+id/backButton"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:background="@drawable/bg_menu_circle"
+                android:backgroundTint="@null"
+                app:backgroundTint="@null"
+                android:stateListAnimator="@null"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:padding="0dp"
+                android:text="" />
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_arrow_back"
+                android:clickable="false"
+                android:focusable="false"
+                android:importantForAccessibility="no" />
+
+        </FrameLayout>
+
+
+        <!-- ========================= -->
+        <!-- HEADER -->
+        <!-- ========================= -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Report an Unsafe Area"
+            android:textColor="@color/plum_text"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="26dp"
+            android:text="Your report helps other women stay safe. It takes less than a minute."
+            android:textColor="@color/muted_grey"
+            android:textSize="14sp" />
+
+
+        <!-- ========================= -->
+        <!-- FORM CARD -->
+        <!-- ========================= -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_feature_card"
+            android:padding="20dp">
+
+
+            <!-- ========================= -->
+            <!-- LOCATION LABEL -->
+            <!-- ========================= -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="6dp">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginEnd="6dp"
+                    android:src="@drawable/ic_map_pin"
+                    android:contentDescription="@null" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Location"
+                    android:textColor="@color/plum_text"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+
+            <!-- ========================= -->
+            <!-- REAL LOCATION INPUT -->
+            <!-- ========================= -->
+
+            <EditText
+                android:id="@+id/locationInput"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="Enter unsafe location"
+                android:background="@drawable/bg_tagline_chip"
+                android:paddingHorizontal="12dp"
+                android:inputType="text"
+                android:singleLine="true"
+                android:textColor="@color/plum_text"
+                android:textColorHint="@color/muted_grey"
+                android:layout_marginBottom="8dp" />
+
+
+            <!-- ========================= -->
+            <!-- SEARCH LOCATION BUTTON -->
+            <!-- ========================= -->
+
+            <Button
+                android:id="@+id/searchLocationButton"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="Search Location"
+                android:textAllCaps="false"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@color/lavender_deep"
+                android:background="@drawable/bg_view_reports_pill"
+                android:backgroundTint="@null"
+                app:backgroundTint="@null"
+                android:stateListAnimator="@null"
+                android:layout_marginBottom="22dp" />
+
+
+            <!-- ========================= -->
+            <!-- INCIDENT TYPE LABEL -->
+            <!-- ========================= -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="6dp">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginEnd="6dp"
+                    android:src="@drawable/ic_report_flag"
+                    android:contentDescription="@null" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="What happened?"
+                    android:textColor="@color/plum_text"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+
+            <!-- ========================= -->
+            <!-- REPORT TYPE SPINNER -->
+            <!-- ========================= -->
+
+            <Spinner
+                android:id="@+id/reportTypeSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/bg_tagline_chip"
+                android:paddingHorizontal="12dp"
+                android:layout_marginBottom="18dp" />
+
+
+            <!-- ========================= -->
+            <!-- NIGHT CHECKBOX -->
+            <!-- ========================= -->
+
+            <CheckBox
+                android:id="@+id/isNightCheckbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="This happened at night"
+                android:textColor="@color/plum_text"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+
+        <!-- ========================= -->
+        <!-- SUBMIT BUTTON -->
+        <!-- ========================= -->
+
+        <Button
+            android:id="@+id/submitReportButton"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="26dp"
+            android:background="@drawable/bg_submit_button_ripple"
+            android:backgroundTint="@null"
+            app:backgroundTint="@null"
+            android:stateListAnimator="@null"
+            android:elevation="6dp"
+            android:text="Submit Report"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="17sp"
+            android:letterSpacing="0.02"
+            android:textStyle="bold" />
+
+
+        <!-- ========================= -->
+        <!-- STATUS MESSAGE -->
+        <!-- ========================= -->
+
+        <TextView
+            android:id="@+id/statusText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:textColor="@color/lavender_deep"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+
+        <!-- ========================= -->
+        <!-- VIEW MY REPORTS -->
+        <!-- ========================= -->
+
+        <Button
+            android:id="@+id/viewMyReportsButton"
+            android:layout_width="wrap_content"
+            android:layout_height="46dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="18dp"
+            android:paddingHorizontal="28dp"
+            android:background="@drawable/bg_view_reports_pill"
+            android:backgroundTint="@null"
+            app:backgroundTint="@null"
+            android:stateListAnimator="@null"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:text="View My Reports"
+            android:textAllCaps="false"
+            android:textColor="@color/lavender_deep"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</ScrollView>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="360dp"
+    android:height="150dp"
+    android:viewportWidth="360"
+    android:viewportHeight="150">
+
+    <!-- Pronounced dome/hill peaking around 30% of the width, then a
+         steep descent into a long flat low valley across the rest of
+         the width, matching the reference. -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="
+            M0,90
+            C40,55 80,42 120,52
+            C180,65 230,115 290,140
+            C315,147 340,149 360,149
+            L360,150
+            L0,150
+            Z" />
+</vector>

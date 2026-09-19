@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">RunGirlRun</string>
+
+    <string name="welcome_back">Welcome Back</string>
+    <string name="placeholder_email">user@email.com</string>
+    <string name="tagline">Your safety is our priority</string>
+    <string name="sos_label">SOS</string>
+    <string name="sos_subtitle">Tap in case of emergency</string>
+    <string name="contacts_card_text">Emergency\nContacts</string>
+    <string name="map_card_text">Safe Map\n&amp; Routes</string>
+    <string name="report_card_text">Report\nUnsafe Area</string>
+    <string name="camera_card_text">Spy Camera\nDetection</string>
+    <string name="safety_tips_card_text">Safety Tips</string>
+    <string name="footer_brand">RunGirlRun</string>
+    <string name="footer_subtitle">Stay Safe • Stay Confident</string>
+</resources>

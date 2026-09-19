@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <!-- Back button -->
+    <FrameLayout
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:layout_marginBottom="16dp">
+
+        <Button
+            android:id="@+id/backButton"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:background="@drawable/bg_menu_circle"
+            android:backgroundTint="@null"
+            android:stateListAnimator="@null"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:padding="0dp"
+            android:text="" />
+
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_arrow_back"
+            android:clickable="false"
+            android:focusable="false"
+            android:importantForAccessibility="no" />
+
+    </FrameLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Find Safest Route"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="24dp" />
+
+    <AutoCompleteTextView
+        android:id="@+id/sourceInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter source"
+        android:inputType="text"
+        android:padding="14dp"
+        android:singleLine="true"
+        android:completionThreshold="2"/>
+
+    <Button
+        android:id="@+id/searchSourceButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Search Source"
+        android:layout_marginTop="8dp" />
+
+    <AutoCompleteTextView
+        android:id="@+id/destinationInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter destination"
+        android:inputType="text"
+        android:padding="14dp"
+        android:layout_marginTop="20dp" />
+
+    <Button
+        android:id="@+id/searchDestinationButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Search Destination"
+        android:layout_marginTop="8dp" />
+
+    <Button
+        android:id="@+id/findSafeRouteButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Find Safest Route"
+        android:layout_marginTop="28dp" />
+
+</LinearLayout>
