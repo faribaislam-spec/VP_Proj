@@ -40,9 +40,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         forgotPassword.setOnClickListener(v ->
-                Toast.makeText(this,
-                        "Password reset page will be added next",
-                        Toast.LENGTH_SHORT).show()
+                startActivity(new Intent(MainActivity.this, ForgotPasswordActivity.class))
         );
     }
 
