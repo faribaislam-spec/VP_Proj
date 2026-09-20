@@ -7,205 +7,90 @@ import com.example.rungirlrun.models.SafetyReport;
 import java.util.List;
 
 /**
- * Calculates dynamic safety weights for each road.
+ * Pure calculation class - takes a Road and its related SafetyReports,
+ * and computes updated dayWeight / nightWeight for that Road.
  *
- * Base road weight = physical road distance.
- * Safety reports add penalties.
- *
- * Recent serious reports add larger penalties.
- * Older reports gradually lose influence.
- * Day and night reports affect day/night routing separately.
+ * No Firebase or Maps dependency here on purpose:
+ * - Firebase repository layer fetches List<SafetyReport> and calls this class.
+ * - Map layer (OSM / Google Maps) just reads road.getDayWeight()/getNightWeight()
+ *   to decide route styling or Dijkstra path cost.
  */
 public class WeightCalculator {
 
-    // Controls how quickly old reports lose influence
+    // How fast old reports lose influence. Higher = faster decay.
     private static final double DECAY_LAMBDA = 0.05;
+    private static final long MILLIS_PER_DAY = 86_400_000L;
 
-    private static final long MILLIS_PER_DAY =
-            86_400_000L;
+    // Optional: ignore reports older than this many days entirely
+    private static final double MAX_REPORT_AGE_DAYS = 180;
 
-    // Ignore reports older than 180 days
-    private static final double MAX_REPORT_AGE_DAYS =
-            180.0;
-
-
-    public static void calculateWeights(
-            Road road,
-            List<SafetyReport> allReports) {
-
+    /**
+     * Recalculates and sets dayWeight/nightWeight on the given Road,
+     * based on all reports belonging to that road.
+     */
+    public static void calculateWeights(Road road, List<SafetyReport> allReports) {
         double dayPenalty = 0.0;
         double nightPenalty = 0.0;
 
-
         for (SafetyReport report : allReports) {
-
-            // Only use reports assigned to this road
-            if (report.getRoadId() == null
-                    || !report.getRoadId().equals(
-                    road.getId())) {
-
-                continue;
+            if (report.getRoadId() == null || !report.getRoadId().equals(road.getId())) {
+                continue; // not relevant to this road
             }
 
-
-            double ageDays =
-                    ageInDays(
-                            report.getTimestamp()
-                    );
-
-
-            // Ignore very old reports
-            if (ageDays >
-                    MAX_REPORT_AGE_DAYS) {
-
-                continue;
+            double ageDays = ageInDays(report.getTimestamp());
+            if (ageDays > MAX_REPORT_AGE_DAYS) {
+                continue; // too old, ignore
             }
 
-
-            double severity =
-                    severityOf(
-                            report.getReportType(),
-                            report.isNight()
-                    );
-
-
-            double decay =
-                    decayFactor(
-                            ageDays
-                    );
-
-
-            double contribution =
-                    severity * decay;
-
-
-            // --------------------------------------------------
-            // DAY / NIGHT SPLIT
-            // --------------------------------------------------
+            double severity = severityOf(report.getReportType(), report.isNight());
+            double decay = decayFactor(ageDays);
+            double contribution = severity * decay;
 
             if (report.isNight()) {
-
-                /*
-                 * Night incident strongly affects
-                 * night routing.
-                 */
-                nightPenalty +=
-                        contribution;
-
-
-                /*
-                 * It may still indicate some general
-                 * risk during the day, but less strongly.
-                 */
-                dayPenalty +=
-                        contribution * 0.20;
-
-
+                nightPenalty += contribution;
             } else {
-
-                /*
-                 * Day incident strongly affects
-                 * daytime routing.
-                 */
-                dayPenalty +=
-                        contribution;
-
-
-                /*
-                 * Some danger remains relevant at night too.
-                 */
-                nightPenalty +=
-                        contribution * 0.40;
+                dayPenalty += contribution;
             }
         }
 
-
-        road.setDayWeight(
-                road.getBaseWeight()
-                        + dayPenalty
-        );
-
-
-        road.setNightWeight(
-                road.getBaseWeight()
-                        + nightPenalty
-        );
+        road.setDayWeight(road.getBaseWeight() + dayPenalty);
+        road.setNightWeight(road.getBaseWeight() + nightPenalty);
     }
 
-
     /**
-     * Safety penalty for each incident type.
-     *
-     * These values are intentionally larger because
-     * OSM baseWeight is measured in meters.
+     * Base danger score per report type.
+     * isNight lets a type (like poor lighting) matter more after dark.
      */
-    private static double severityOf(
-            ReportType type,
-            boolean isNight) {
-
+    private static double severityOf(ReportType type, boolean isNight) {
         switch (type) {
-
             case ROBBERY:
-                return 5000.0;
-
+                return 10.0;
             case HARASSMENT:
-                return 4000.0;
-
+                return 8.0;
             case POOR_LIGHTING:
-
-                if (isNight) {
-                    return 300.0;
-                }
-
-                return 100.0;
-
+                return isNight ? 7.0 : 3.0;
             case VANDALISM:
-                return 200.0;
-
+                return 5.0;
             case FLOOD:
-                return 350.0;
-
+                return 4.0;
             case CONSTRUCTION:
-                return 150.0;
-
+                return 3.0;
             case OTHER:
             default:
-                return 100.0;
+                return 2.0;
         }
     }
 
-
-    /**
-     * Calculates age of report in days.
-     */
-    private static double ageInDays(
-            long timestamp) {
-
-        long ageMillis =
-                System.currentTimeMillis()
-                        - timestamp;
-
-
-        return ageMillis
-                / (double) MILLIS_PER_DAY;
+    private static double ageInDays(long timestamp) {
+        long ageMillis = System.currentTimeMillis() - timestamp;
+        return ageMillis / (double) MILLIS_PER_DAY;
     }
 
-
     /**
-     * Exponential decay.
-     *
-     * New reports count almost fully.
-     * Older reports gradually fade.
+     * Exponential decay: recent reports count almost fully,
+     * older ones fade toward zero influence.
      */
-    private static double decayFactor(
-            double ageDays) {
-
-        return Math.exp(
-                -DECAY_LAMBDA
-                        * Math.max(
-                        ageDays,
-                        0
-                )
-        );
+    private static double decayFactor(double ageDays) {
+        return Math.exp(-DECAY_LAMBDA * Math.max(ageDays, 0));
     }
 }
