@@ -7,7 +7,6 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.telephony.SmsManager;
 import android.widget.Toast;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -16,15 +15,6 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.content.IntentFilter;
-import androidx.core.content.ContextCompat;
-
-import com.example.rungirlrun.services.LiveLocationService;
-import com.google.firebase.firestore.FieldValue;
-import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
 
 import com.example.rungirlrun.dao.ContactDAO;
 import com.example.rungirlrun.models.Contact;
@@ -150,7 +140,7 @@ public class SOSManager {
 
                     if (location != null) {
 
-                        createLiveTrackingSession(
+                        sendMessages(
                                 contacts,
                                 location
                         );
@@ -183,159 +173,6 @@ public class SOSManager {
                     ).show();
 
                 });
-    }
-    private void createLiveTrackingSession(
-            ArrayList<Contact> contacts,
-            @NonNull Location location
-    ) {
-
-        FirebaseUser currentUser =
-                FirebaseAuth.getInstance()
-                        .getCurrentUser();
-
-        if (currentUser == null) {
-            return;
-        }
-
-        String sessionId =
-                UUID.randomUUID().toString();
-
-        Map<String, Object> session =
-                new HashMap<>();
-
-        session.put(
-                "ownerId",
-                currentUser.getUid()
-        );
-
-        session.put(
-                "latitude",
-                location.getLatitude()
-        );
-
-        session.put(
-                "longitude",
-                location.getLongitude()
-        );
-
-        session.put(
-                "accuracy",
-                location.getAccuracy()
-        );
-
-        session.put(
-                "active",
-                true
-        );
-
-        session.put(
-                "startedAt",
-                FieldValue.serverTimestamp()
-        );
-
-        session.put(
-                "updatedAt",
-                FieldValue.serverTimestamp()
-        );
-
-        FirebaseFirestore
-                .getInstance()
-                .collection("liveTracking")
-                .document(sessionId)
-                .set(session)
-                .addOnSuccessListener(unused -> {
-
-                    startLiveLocationService(
-                            sessionId
-                    );
-
-                    sendLiveTrackingMessages(
-                            contacts,
-                            sessionId
-                    );
-
-                })
-                .addOnFailureListener(e -> {
-
-                    Log.e(
-                            "LIVE_TRACKING",
-                            "Failed to create tracking session",
-                            e
-                    );
-
-                    Toast.makeText(
-                            activity,
-                            "Live tracking error: " + e.getMessage(),
-                            Toast.LENGTH_LONG
-                    ).show();
-
-                });
-    }
-    private void startLiveLocationService(
-            String sessionId
-    ) {
-
-        Intent intent =
-                new Intent(
-                        activity,
-                        LiveLocationService.class
-                );
-
-        intent.setAction(
-                LiveLocationService.ACTION_START
-        );
-
-        intent.putExtra(
-                LiveLocationService.EXTRA_SESSION_ID,
-                sessionId
-        );
-
-        ContextCompat.startForegroundService(
-                activity,
-                intent
-        );
-    }
-    private void sendLiveTrackingMessages(
-            ArrayList<Contact> contacts,
-            String sessionId
-    ) {
-
-        String trackingLink =
-                "https://rungirlrun-app.web.app/"
-                        + "track.html?id="
-                        + sessionId;
-
-        String message =
-                "EMERGENCY SOS!\n\n"
-                        + "I may be in danger and need help.\n\n"
-                        + "Track my LIVE location here:\n"
-                        + trackingLink
-                        + "\n\n"
-                        + "My location will update automatically "
-                        + "while SOS is active.\n\n"
-                        + "Sent from RunGirlRun.";
-
-        for (int i = 0; i < contacts.size(); i++) {
-
-            Contact contact =
-                    contacts.get(i);
-
-            String phone =
-                    contact.getPhone();
-
-            if (
-                    phone == null ||
-                            phone.trim().isEmpty()
-            ) {
-                continue;
-            }
-
-            sendSmsToContact(
-                    phone.trim(),
-                    message,
-                    i
-            );
-        }
     }
 
     private void sendMessages(
