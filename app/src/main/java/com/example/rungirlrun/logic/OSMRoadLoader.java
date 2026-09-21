@@ -20,8 +20,11 @@ import java.util.concurrent.Executors;
 
 public class OSMRoadLoader {
 
-    private static final String OVERPASS_URL =
-            "https://overpass-api.de/api/interpreter";
+    private static final String[] OVERPASS_URLS = {
+            "https://overpass-api.de/api/interpreter",
+            "https://overpass.kumi.systems/api/interpreter",
+            "https://overpass.nchc.org.tw/api/interpreter"
+    };;
 
     private static final ExecutorService executor =
             Executors.newSingleThreadExecutor();
@@ -91,7 +94,7 @@ public class OSMRoadLoader {
 
 
                 URL url =
-                        new URL(OVERPASS_URL);
+                        new URL(OVERPASS_URLS[0]);
 
                 connection =
                         (HttpURLConnection)
